@@ -1,21 +1,16 @@
 Sub-Projects
 ------------
 
-This repository consists of several sub-projects:
+Sub-projects in this repository:
 - A presentation on octasphere triangulations
-  ([source](./presentation/), [slides](https://hcschuetz.github.io/octasphere/presentation/dist/))
+  ([source](./presentation/),
+  [slides](https://hcschuetz.github.io/octasphere/presentation/dist/))
 - The "lab" project for experimenting with the triangulations
   ([source](./lab/), [web app](https://hcschuetz.github.io/octasphere/lab/dist/))
-- The "earth" project for experimenting with texture mappings
-  ([source](./earth/), [web app](https://hcschuetz.github.io/octasphere/earth/dist/))
-- the "map transformations" project experimenting with shape and texture
-  transformations
-  ([source](./map-transformations/),
-  [web app](https://hcschuetz.github.io/octasphere/map-transformations/dist/))
 
-(While this repository started out with investigations of the octasphere,
-it meanwhile also contains quite some code related to icospheres and
-latitude/longitude spheres.)
+(Two former sub-projects that were not specifically about octaspheres
+but rather about sphere texturing have been moved to
+[their own repository](https://hcschuetz.github.io/sphere-texturing).)
 
 Now for an explanation what this octasphere stuff is all about:
 
