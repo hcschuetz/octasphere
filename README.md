@@ -10,7 +10,7 @@ Sub-projects in this repository:
 
 (Two former sub-projects that were not specifically about octaspheres
 but rather about sphere texturing have been moved to
-[their own repository](https://hcschuetz.github.io/sphere-texturing).)
+[their own repository](https://github.com/hcschuetz/sphere-texturing).)
 
 Now for an explanation what this octasphere stuff is all about:
 
