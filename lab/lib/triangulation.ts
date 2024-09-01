@@ -10,6 +10,25 @@ contain one point more than its successor.
 */
 export type Triangulation = Vector3[][];
 
+export function forTriangles(
+  triangulation: Triangulation,
+  // TODO also pass coordinate indices to the callback
+  // ...to make forTriangles(...) usable in more places.
+  callback: (a: Vector3, b: Vector3, c: Vector3, backward: boolean) => void,
+) {
+  triangulation.forEach((row, i) => {
+    if (i > 0) {
+      const prevRow = triangulation[i-1];
+      row.forEach((v, j) => {
+        callback(v, prevRow[j+1], prevRow[j], false);
+        if (j > 0) {
+          callback(v, prevRow[j], row[j-1], true);
+        }
+      });
+    }
+  });
+}
+
 // Unit vectors
 const ex = new Vector3(1, 0, 0);
 const ey = new Vector3(0, 1, 0);

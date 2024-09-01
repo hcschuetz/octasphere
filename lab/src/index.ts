@@ -467,22 +467,7 @@ M.autorun(() => {
   // TODO Also analyze bends between pairs of triangles sharing only one vertex?
 
   let volume = 0;
-
-  function addVol(a: V3, b: V3, c: V3) {
-    volume += a.cross(b).dot(c) / 6;
-  }
-
-  triangulation.forEach((row, i) => {
-    if (i > 0) {
-      const prevRow = triangulation[i-1];
-      row.forEach((v, j) => {
-        addVol(v, prevRow[j+1], prevRow[j]);
-        if (j > 0) {
-          addVol(v, prevRow[j], row[j-1]);
-        }
-      });
-    }
-  });
+  T.forTriangles(triangulation, (a,b,c) => volume += a.cross(b).dot(c) / 6);
 
   function show(where: string, what: string) {
     document.querySelector(where)!.innerHTML = what;
