@@ -399,7 +399,6 @@ M.autorun(() => {
 
   triangulation.forEach((row, i) => {
     row.forEach((vtx, j) => {
-      const k = n - i - j;
       forwardNeighborOffsets.forEach(([di, dj]) => {
         const i_ = i + di, j_ = j + dj, k_ = n - i_ - j_;
         if (i_ >= 0 && j_ >= 0 && k_ >= 0) {
