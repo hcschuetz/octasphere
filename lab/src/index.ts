@@ -467,6 +467,24 @@ M.autorun(() => {
 
   // TODO Also analyze bends between pairs of triangles sharing only one vertex?
 
+  let volume = 0;
+
+  function addVol(a: V3, b: V3, c: V3) {
+    volume += a.cross(b).dot(c) / 6;
+  }
+
+  triangulation.forEach((row, i) => {
+    if (i > 0) {
+      const prevRow = triangulation[i-1];
+      row.forEach((v, j) => {
+        addVol(v, prevRow[j+1], prevRow[j]);
+        if (j > 0) {
+          addVol(v, prevRow[j], row[j-1]);
+        }
+      });
+    }
+  });
+
   function show(where: string, what: string) {
     document.querySelector(where)!.innerHTML = what;
   }
@@ -474,7 +492,10 @@ M.autorun(() => {
   show("#nEdges", sum0.toFixed());
   show("#meanEdge", `${mean.toFixed(5)} ± ${stdDev.toFixed(5)} (±${stdDevInPercent.toFixed(3)}%)`);
   show("#minMax", `${min.toFixed(5)} : ${max.toFixed(5)} (1 : ${(max/min).toFixed(5)})`);
-  show("#maxBend", radToDeg(maxBend).toFixed(4) + "°")
+  show("#maxBend", radToDeg(maxBend).toFixed(4) + "°");
+  // The volume as a percentage of the limit TAU/12 (= 1/8 of the volume of the
+  // unit sphere):
+  show("#volume", `${(volume / (TAU/12) * 100).toFixed(5)}% (gap: ${((1 - volume / (TAU/12)) * 100).toFixed(5)}%)`);
 });
 
 // Easter Egg
